@@ -9,7 +9,7 @@ const { Search } = Input;
 const { Title, Paragraph } = Typography;
 
 export default function Home() {
-  const [place, setPlace] = useState("");
+  const [place, setPlace] = useState("Palakkad, Kerala");
   const [loading, setLoading] = useState(false);
   const [thoughts, setThoughts] = useState("");
   const [data, setData] = useState(null);
@@ -126,11 +126,13 @@ export default function Home() {
           <Checkbox checked={usingDummy} onChange={e => setUsingDummy(e.target.checked)}>Use dummy data</Checkbox>
           <br />
           <Search
-            placeholder="Enter place name (e.g., palakkad, kerala)"
+            placeholder="Enter a place name (e.g., palakkad, kerala)"
             enterButton="Search"
             size="large"
             onSearch={fetchData}
             style={{ maxWidth: 600, marginBottom: 16 }}
+value={place}
+onChange={setPlace}
           />
 
           {loading && (
