@@ -121,13 +121,13 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <div style={{ padding: 24 }}>
+        <div style={{ padding: 8 }}>
           <Title level={2}>Plan B Wander</Title>
           <Checkbox checked={usingDummy} onChange={e => setUsingDummy(e.target.checked)}>Use dummy data</Checkbox>
           <br />
           <Search
             placeholder="Enter a place name (e.g., palakkad, kerala)"
-            enterButton="Search"
+            enterButton="Guide me"
             size="large"
             onSearch={fetchData}
             style={{ maxWidth: 600, marginBottom: 16 }}
