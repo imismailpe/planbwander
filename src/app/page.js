@@ -166,7 +166,7 @@ export default function Home() {
                   display: "flex",
                   gap: 16,
                   overflowX: "auto",
-                  flexWrap: "nowrap",
+                  flexWrap: "wrap",
                   paddingBottom: 16,
                 }}
               >
@@ -174,7 +174,6 @@ export default function Home() {
                 <Card
                   title="Events"
                   style={{
-                    minWidth: 300,
                     background: "#fff",
                     boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
                     border: "1px solid #e8e8e8",
@@ -196,7 +195,6 @@ export default function Home() {
                 <Card
                   title="Restaurants"
                   style={{
-                    minWidth: 300,
                     background: "#fff",
                     boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
                     border: "1px solid #e8e8e8",
@@ -223,7 +221,6 @@ export default function Home() {
                 <Card
                   title="Attractions"
                   style={{
-                    minWidth: 300,
                     background: "#fff",
                     boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
                     border: "1px solid #e8e8e8",
