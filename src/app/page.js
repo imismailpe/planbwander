@@ -11,7 +11,7 @@ import {
   message as antdMessage,
 } from "antd";
 
-const { Title, Paragraph } = Typography;
+const { Paragraph } = Typography;
 
 export default function PlaceInfoApp() {
   const [place, setPlace] = useState("Palakkad, Kerala");
@@ -57,7 +57,9 @@ export default function PlaceInfoApp() {
         </Space.Compact>
 
         {data?.weather && (
-          <Card title={`Weather in ${confirmedPlace}`} variant="outlined">
+          <Card loading={loading} title={`Weather in ${confirmedPlace}`} variant="outlined" style={{ 
+            boxShadow: "2px 2px 6px #bcbcbc"
+           }}>
             <Paragraph>
               <strong>Temperature:</strong> {data.weather.temperature}
             </Paragraph>
@@ -82,13 +84,24 @@ export default function PlaceInfoApp() {
               <Card
                 title={section.charAt(0).toUpperCase() + section.slice(1)}
                 variant="outlined"
+                styles={{
+                  body: {
+                    background: "#f6f6f6"
+                  }
+                }}
+                style={{ 
+                  boxShadow: "2px 2px 4px #bcbcbc"
+                 }}
               >
                 {data?.[section]?.map((item, idx) => (
                   <Card
                     type="inner"
                     key={idx}
                     title={item.name || item.title}
-                    style={{ marginBottom: 12 }}
+                    style={{ marginBottom: 12,
+                      boxShadow: "4px 4px 6px #bcbcbc"
+                     }}
+                     loading={loading}
                   >
                     {item.description && (
                       <Paragraph>{item.description}</Paragraph>
@@ -115,6 +128,7 @@ export default function PlaceInfoApp() {
                     )}
                     {section === "events" ? (
                       <Button
+                      type="primary"
                         target="_blank"
                         href={`https://www.google.com/search?q=${item.name}, ${confirmedPlace}`}
                       >
@@ -122,6 +136,7 @@ export default function PlaceInfoApp() {
                       </Button>
                     ) : (
                       <Button
+                      type="primary"
                         target="_blank"
                         href={`https://www.google.com/search?q=${item.name}, ${confirmedPlace}`}
                       >
@@ -135,7 +150,7 @@ export default function PlaceInfoApp() {
           ))}
         </Row>
         <footer>
-          <center>Powered by: ZOD, Vercel, Nextjs, Gemini</center>
+          <center>Powered by: Gemini, ZOD, Vercel, Nextjs, Antd, Github</center>
         </footer>
       </Space>
     </div>
