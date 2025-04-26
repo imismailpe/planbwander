@@ -20,6 +20,10 @@ const [usingLocation, setUsingLocation] = useState(false);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
 
+const onGetInfo = (place) => {
+  setUsingLocation(false);
+  fetchPlaceInfo(place);
+}
   const fetchPlaceInfo = async (place) => {
     if (!place) return;
     setLoading(true);
@@ -40,11 +44,12 @@ const [usingLocation, setUsingLocation] = useState(false);
     }
     setConfirmedPlace(place);
     setLoading(false);
-setUsingLocation(false)
+
   };
   const useMyLocation = () => {
 setLoading(true)
 setUsingLocation(true)
+
     const options = {
       enableHighAccuracy: true,
       timeout: 5000,
@@ -78,14 +83,14 @@ setLoading(false)
               placeholder="Enter a place name"
               value={place}
               onChange={(e) => setPlace(e.target.value)}
-              onPressEnter={() => fetchPlaceInfo(place)}
+              onPressEnter={() => onGetInfo(place)}
               style={{ width: "100%" }}
               size="large"
             />
             <Button
               type="primary"
               loading={loading}
-              onClick={() => fetchPlaceInfo(place)}
+              onClick={() => onGetInfo(place)}
               size="large"
             >
               Get Info
