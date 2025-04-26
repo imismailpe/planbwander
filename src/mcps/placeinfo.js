@@ -11,13 +11,28 @@ const placeInfoSchema = z.object({
       humidity: z.string(),
       wind: z.string(),
     }),
-    events: z.array(z.object({ name: z.string(), description: z.string() })),
-    attractions: z.array(
-      z.object({ name: z.string(), speciality: z.string(), notes: z.string() })
-    ),
-    restaurants: z.array(
-      z.object({ name: z.string(), type: z.string(), notes: z.string() })
-    ),
+    events: z
+      .array(z.object({ name: z.string(), description: z.string() }))
+      .max(3),
+    attractions: z
+      .array(
+        z.object({
+          name: z.string(),
+          speciality: z.string(),
+          notes: z.string()
+        })
+      )
+      .max(3),
+    restaurants: z
+      .array(
+        z.object({
+          name: z.string(),
+          type: z.string(),
+          notes: z.string(),
+          rating: z.string()
+        })
+      )
+      .max(3),
   }),
 });
 
@@ -27,8 +42,7 @@ export const getPlaceInfo = async (userprompt) => {
     prompt: userprompt,
     schema: placeInfoSchema,
     system:
-      "You are a tourist guide. you can suggest the best events, attractions, and restaurants in given place for a tourist to explore",
+      "You are a tourist guide. you can suggest the best (upto 3 max) events, attractions, and restaurants in given place for a tourist to explore",
   });
-  console.log("inside srv", object.info)
   return object.info;
-}
+};

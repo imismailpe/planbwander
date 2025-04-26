@@ -5,6 +5,7 @@ export async function POST(req) {
   const { input } = body;
 
   const aiResp = await getPlaceInfo(input.content);
+  console.log('AI Response:', aiResp); // ✅ Add this
   return new Response(JSON.stringify(aiResp), {
     status: 200,
   });

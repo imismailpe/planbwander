@@ -1,5 +1,6 @@
 import "./globals.css";
-
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { ConfigProvider } from "antd";
 
 export const metadata = {
   title: "Place B Wander",
@@ -10,7 +11,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        {children}
+        <ConfigProvider
+          theme={{
+            token: {
+              // Seed Token
+              colorPrimary: "#00b96b",
+              // Alias Token
+              // colorBgContainer: "#f6ffed",
+            },
+          }}
+        >
+          <AntdRegistry>{children}</AntdRegistry>
+        </ConfigProvider>
       </body>
     </html>
   );
