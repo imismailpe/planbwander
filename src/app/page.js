@@ -44,9 +44,9 @@ export default function PlaceInfoApp() {
     <div style={{ padding: 24, maxWidth: 1200, margin: "0 auto" }}>
       <Space direction="vertical" style={{ width: "100%" }} size="large">
         <h2>LaPlace</h2>
-        <div>
+        <h4 style={{ color: "#525252", fontWeight: 400, margin: 0 }}>
           Find the best things to explore in a place with the help of AI
-        </div>
+        </h4>
         <Space.Compact style={{ width: "100%" }}>
           <Input
             placeholder="Enter a place name"
@@ -62,27 +62,39 @@ export default function PlaceInfoApp() {
         {data?.weather && (
           <Card
             loading={loading}
-            title={`☔ Weather in ${confirmedPlace}`}
+            title={"☔ Weather"}
             variant="outlined"
             style={{
               boxShadow: "2px 2px 6px #bcbcbc",
             }}
           >
-            <Paragraph>
-              <strong>Temperature:</strong> {data.weather.temperature}
-            </Paragraph>
-            <Paragraph>
-              <strong>Description:</strong> {data.weather.description}
-            </Paragraph>
-            <Paragraph>
-              <strong>Feels Like:</strong> {data.weather.feels_like}
-            </Paragraph>
-            <Paragraph>
-              <strong>Humidity:</strong> {data.weather.humidity}
-            </Paragraph>
-            <Paragraph>
-              <strong>Wind:</strong> {data.weather.wind}
-            </Paragraph>
+            <Row justify={"space-between"} gutter={[16, 16]}>
+              <Col>
+                <Paragraph>
+                  <strong>Temperature:</strong> {data.weather.temperature}
+                </Paragraph>
+              </Col>
+              <Col>
+                <Paragraph>
+                  <strong>Condition:</strong> {data.weather.description}
+                </Paragraph>
+              </Col>
+              <Col>
+                <Paragraph>
+                  <strong>Feels Like:</strong> {data.weather.feels_like}
+                </Paragraph>
+              </Col>
+              <Col>
+                <Paragraph>
+                  <strong>Humidity:</strong> {data.weather.humidity}
+                </Paragraph>
+              </Col>
+              <Col>
+                <Paragraph>
+                  <strong>Wind:</strong> {data.weather.wind}
+                </Paragraph>
+              </Col>
+            </Row>
           </Card>
         )}
 
@@ -90,12 +102,21 @@ export default function PlaceInfoApp() {
           {["events", "restaurants", "attractions"].map((section) => (
             <Col xs={24} md={8} key={section}>
               <Card
-                title={(section === "events" ? "⚽" : section === "attractions" ? "⛲" : "☕") + " " + section.charAt(0).toUpperCase() + section.slice(1)}
+                title={
+                  (section === "events"
+                    ? "⚽"
+                    : section === "attractions"
+                    ? "⛲"
+                    : "☕") +
+                  " " +
+                  section.charAt(0).toUpperCase() +
+                  section.slice(1)
+                }
                 variant="outlined"
                 styles={{
                   body: {
                     background: "#f6f6f6",
-                    padding: 16
+                    padding: 16,
                   },
                 }}
                 style={{
@@ -136,23 +157,17 @@ export default function PlaceInfoApp() {
                         <strong>Rating:</strong> {item.rating}
                       </Paragraph>
                     )}
-                    {section === "events" ? (
-                      <Button
-                        type="primary"
-                        target="_blank"
-                        href={`https://www.google.com/search?q=${item.name}, near ${confirmedPlace}`}
-                      >
-                        Know more
-                      </Button>
-                    ) : (
-                      <Button
-                        type="primary"
-                        target="_blank"
-                        href={`https://www.google.com/search?q=${item.name}, near ${confirmedPlace}`}
-                      >
-                        Find it
-                      </Button>
-                    )}
+                    <Button
+                      type="primary"
+                      target="_blank"
+                      href={`https://www.google.com/search?q=${item.name}, near ${confirmedPlace}`}
+                    >
+                      {section === "events"
+                        ? "Know more"
+                        : section === "restaurants"
+                        ? "Find it"
+                        : "Explore"}
+                    </Button>
                   </Card>
                 ))}
               </Card>
