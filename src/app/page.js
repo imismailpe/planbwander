@@ -43,7 +43,8 @@ export default function PlaceInfoApp() {
   return (
     <div style={{ padding: 24, maxWidth: 1200, margin: "0 auto" }}>
       <Space direction="vertical" style={{ width: "100%" }} size="large">
-        <h2>Place B Wander</h2>
+        <h2>LaPlace</h2>
+        <div>Find the best things to explore in a place with the help of AI</div>
         <Space.Compact style={{ width: "100%" }}>
           <Input
             placeholder="Enter a place name"
