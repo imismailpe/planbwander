@@ -140,7 +140,7 @@ export default function PlaceInfoApp() {
                       <Button
                         type="primary"
                         target="_blank"
-                        href={`https://www.google.com/search?q=${item.name}, ${confirmedPlace}`}
+                        href={`https://www.google.com/search?q=${item.name}, near ${confirmedPlace}`}
                       >
                         Know more
                       </Button>
@@ -148,7 +148,7 @@ export default function PlaceInfoApp() {
                       <Button
                         type="primary"
                         target="_blank"
-                        href={`https://www.google.com/search?q=${item.name}, ${confirmedPlace}`}
+                        href={`https://www.google.com/search?q=${item.name}, near ${confirmedPlace}`}
                       >
                         Find it
                       </Button>
