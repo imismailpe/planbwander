@@ -15,6 +15,7 @@ const { Paragraph } = Typography;
 
 export default function PlaceInfoApp() {
   const [place, setPlace] = useState("Palakkad, Kerala");
+const [usingLocation, setUsingLocation] = useState(false);
   const [confirmedPlace, setConfirmedPlace] = useState("");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
@@ -39,8 +40,11 @@ export default function PlaceInfoApp() {
     }
     setConfirmedPlace(place);
     setLoading(false);
+setUsingLocation(false)
   };
   const useMyLocation = () => {
+setLoading(true)
+setUsingLocation(true)
     const options = {
       enableHighAccuracy: true,
       timeout: 5000,
@@ -54,6 +58,8 @@ export default function PlaceInfoApp() {
       },
       () => {
         antdMessage.error("Failed to get location");
+setUsingLocation(false);
+setLoading(false)
       },
       options
     );
@@ -194,7 +200,7 @@ export default function PlaceInfoApp() {
                     <Button
                       type="primary"
                       target="_blank"
-                      href={`https://www.google.com/search?q=${item.name}, near ${confirmedPlace}`}
+                      href={`https://www.google.com/search?q=${item.name}, near ${usingLocation? "me":confirmedPlace}`}
                     >
                       {section === "events"
                         ? "Know more"
@@ -209,7 +215,7 @@ export default function PlaceInfoApp() {
           ))}
         </Row>
         <footer>
-          <center>Powered by: Gemini, ZOD, Vercel, Nextjs, Antd, Github</center>
+          <center>Powered by: Gemini, ZOD, Vercel, Antd, Github</center>
         </footer>
       </Space>
     </div>
