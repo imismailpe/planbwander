@@ -59,7 +59,6 @@ export default function PlaceInfoApp() {
           </Button>
         </Space.Compact>
 
-        {data?.weather && (
           <Card
             loading={loading}
             title={"☔ Weather"}
@@ -68,7 +67,7 @@ export default function PlaceInfoApp() {
               boxShadow: "2px 2px 6px #bcbcbc",
             }}
           >
-            <Row justify={"space-between"} gutter={[16, 16]}>
+            {data?.weather && <Row justify={"space-between"} gutter={[16, 16]}>
               <Col>
                 <Paragraph>
                   <strong>Temperature:</strong> {data.weather.temperature}
@@ -94,9 +93,8 @@ export default function PlaceInfoApp() {
                   <strong>Wind:</strong> {data.weather.wind}
                 </Paragraph>
               </Col>
-            </Row>
+            </Row>}
           </Card>
-        )}
 
         <Row gutter={[16, 16]}>
           {["events", "restaurants", "attractions"].map((section) => (
