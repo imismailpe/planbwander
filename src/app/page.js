@@ -120,6 +120,7 @@ export default function PlaceInfoApp() {
                 style={{
                   boxShadow: "2px 2px 4px #bcbcbc",
                 }}
+                loading={loading}
               >
                 {data?.[section]?.map((item, idx) => (
                   <Card
@@ -130,7 +131,6 @@ export default function PlaceInfoApp() {
                       marginBottom: 12,
                       boxShadow: "4px 4px 6px #bcbcbc",
                     }}
-                    loading={loading}
                   >
                     {item.description && (
                       <Paragraph>{item.description}</Paragraph>
