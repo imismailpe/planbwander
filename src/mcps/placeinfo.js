@@ -42,7 +42,7 @@ export const getPlaceInfo = async (userprompt) => {
     prompt: userprompt,
     schema: placeInfoSchema,
     system:
-      "You are a tourist guide. you can suggest the best (upto 3 max) events, attractions, and restaurants in given place for a tourist to explore",
+      "You are a tourist guide. you can suggest the best (upto 3 max) events, attractions, and restaurants in the given place or nearby, for a tourist to explore",
   });
   return object.info;
 };
