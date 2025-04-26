@@ -44,7 +44,9 @@ export default function PlaceInfoApp() {
     <div style={{ padding: 24, maxWidth: 1200, margin: "0 auto" }}>
       <Space direction="vertical" style={{ width: "100%" }} size="large">
         <h2>LaPlace</h2>
-        <div>Find the best things to explore in a place with the help of AI</div>
+        <div>
+          Find the best things to explore in a place with the help of AI
+        </div>
         <Space.Compact style={{ width: "100%" }}>
           <Input
             placeholder="Enter a place name"
@@ -58,9 +60,14 @@ export default function PlaceInfoApp() {
         </Space.Compact>
 
         {data?.weather && (
-          <Card loading={loading} title={`Weather in ${confirmedPlace}`} variant="outlined" style={{ 
-            boxShadow: "2px 2px 6px #bcbcbc"
-           }}>
+          <Card
+            loading={loading}
+            title={`☔ Weather in ${confirmedPlace}`}
+            variant="outlined"
+            style={{
+              boxShadow: "2px 2px 6px #bcbcbc",
+            }}
+          >
             <Paragraph>
               <strong>Temperature:</strong> {data.weather.temperature}
             </Paragraph>
@@ -83,26 +90,28 @@ export default function PlaceInfoApp() {
           {["events", "restaurants", "attractions"].map((section) => (
             <Col xs={24} md={8} key={section}>
               <Card
-                title={section.charAt(0).toUpperCase() + section.slice(1)}
+                title={(section === "events" ? "⚽" : section === "attractions" ? "⛲" : "☕") + " " + section.charAt(0).toUpperCase() + section.slice(1)}
                 variant="outlined"
                 styles={{
                   body: {
-                    background: "#f6f6f6"
-                  }
+                    background: "#f6f6f6",
+                    padding: 16
+                  },
                 }}
-                style={{ 
-                  boxShadow: "2px 2px 4px #bcbcbc"
-                 }}
+                style={{
+                  boxShadow: "2px 2px 4px #bcbcbc",
+                }}
               >
                 {data?.[section]?.map((item, idx) => (
                   <Card
                     type="inner"
                     key={idx}
                     title={item.name || item.title}
-                    style={{ marginBottom: 12,
-                      boxShadow: "4px 4px 6px #bcbcbc"
-                     }}
-                     loading={loading}
+                    style={{
+                      marginBottom: 12,
+                      boxShadow: "4px 4px 6px #bcbcbc",
+                    }}
+                    loading={loading}
                   >
                     {item.description && (
                       <Paragraph>{item.description}</Paragraph>
@@ -129,7 +138,7 @@ export default function PlaceInfoApp() {
                     )}
                     {section === "events" ? (
                       <Button
-                      type="primary"
+                        type="primary"
                         target="_blank"
                         href={`https://www.google.com/search?q=${item.name}, ${confirmedPlace}`}
                       >
@@ -137,7 +146,7 @@ export default function PlaceInfoApp() {
                       </Button>
                     ) : (
                       <Button
-                      type="primary"
+                        type="primary"
                         target="_blank"
                         href={`https://www.google.com/search?q=${item.name}, ${confirmedPlace}`}
                       >
