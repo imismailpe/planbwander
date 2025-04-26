@@ -86,6 +86,7 @@ setLoading(false)
               onPressEnter={() => onGetInfo(place)}
               style={{ width: "100%" }}
               size="large"
+allowClear
             />
             <Button
               type="primary"
