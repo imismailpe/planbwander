@@ -19,7 +19,7 @@ export default function PlaceInfoApp() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
 
-  const fetchPlaceInfo = async () => {
+  const fetchPlaceInfo = async (place) => {
     if (!place) return;
     setLoading(true);
     try {
@@ -40,6 +40,24 @@ export default function PlaceInfoApp() {
     setConfirmedPlace(place);
     setLoading(false);
   };
+  const useMyLocation = () => {
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    };
+    navigator.geolocation.getCurrentPosition(
+      (data) => {
+        const placeText = `lat: ${data.coords.latitude}, long: ${data.coords.longitude}`;
+        setPlace(placeText);
+        fetchPlaceInfo(placeText);
+      },
+      () => {
+        antdMessage.error("Failed to get location");
+      },
+      options
+    );
+  };
   return (
     <div style={{ padding: 24, maxWidth: 1200, margin: "0 auto" }}>
       <Space direction="vertical" style={{ width: "100%" }} size="large">
@@ -47,27 +65,44 @@ export default function PlaceInfoApp() {
         <h4 style={{ color: "#525252", fontWeight: 400, margin: 0 }}>
           Find the best things to explore in a place with the help of AI
         </h4>
-        <Space.Compact style={{ width: "100%" }}>
-          <Input
-            placeholder="Enter a place name"
-            value={place}
-            onChange={(e) => setPlace(e.target.value)}
-            onPressEnter={fetchPlaceInfo}
-          />
-          <Button type="primary" loading={loading} onClick={fetchPlaceInfo}>
-            Get Info
+        <Row justify={"center"} gutter={[32, 16]} align={"middle"}>
+          <Col flex={1}>
+          <Space.Compact style={{ width: "100%" }}>
+            <Input
+              placeholder="Enter a place name"
+              value={place}
+              onChange={(e) => setPlace(e.target.value)}
+              onPressEnter={() => fetchPlaceInfo(place)}
+              style={{ width: "100%" }}
+              size="large"
+            />
+            <Button
+              type="primary"
+              loading={loading}
+              onClick={() => fetchPlaceInfo(place)}
+              size="large"
+            >
+              Get Info
+            </Button>
+          </Space.Compact>
+          </Col>
+          <Col>
+          <Button type="default" onClick={useMyLocation} size="large">
+            Use my location
           </Button>
-        </Space.Compact>
+          </Col>
+        </Row>
 
-          <Card
-            loading={loading}
-            title={"☔ Weather"}
-            variant="outlined"
-            style={{
-              boxShadow: "2px 2px 6px #bcbcbc",
-            }}
-          >
-            {data?.weather && <Row justify={"space-between"} gutter={[16, 16]}>
+        <Card
+          loading={loading}
+          title={"☔ Weather"}
+          variant="outlined"
+          style={{
+            boxShadow: "2px 2px 6px #bcbcbc",
+          }}
+        >
+          {data?.weather && (
+            <Row justify={"space-between"} gutter={[16, 16]}>
               <Col>
                 <Paragraph>
                   <strong>Temperature:</strong> {data.weather.temperature}
@@ -93,8 +128,9 @@ export default function PlaceInfoApp() {
                   <strong>Wind:</strong> {data.weather.wind}
                 </Paragraph>
               </Col>
-            </Row>}
-          </Card>
+            </Row>
+          )}
+        </Card>
 
         <Row gutter={[16, 16]}>
           {["events", "restaurants", "attractions"].map((section) => (
