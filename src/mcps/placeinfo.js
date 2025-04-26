@@ -29,7 +29,7 @@ const placeInfoSchema = z.object({
           name: z.string(),
           type: z.string(),
           notes: z.string(),
-          rating: z.string()
+          rating: z.string().describe("star rating for ex: 4.2/5")
         })
       )
       .max(3),

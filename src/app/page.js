@@ -188,7 +188,7 @@ export default function PlaceInfoApp() {
                     )}
                     {item.rating && (
                       <Paragraph>
-                        <strong>Rating:</strong> {item.rating}
+                        <strong>Rating:</strong> {item.rating} ⭐
                       </Paragraph>
                     )}
                     <Button
