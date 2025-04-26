@@ -221,7 +221,7 @@ allowClear
           ))}
         </Row>
         <footer>
-          <center>Powered by: Gemini, ZOD, Vercel, Antd, Github</center>
+          <center>Powered by: Gemini, Zod, Vercel, Antd, Github</center>
         </footer>
       </Space>
     </div>
