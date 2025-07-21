@@ -1,4 +1,4 @@
-This app helps you find the interesting places, foods, and events from a given place. If you are stuck in a new place and have nothing to do, just find out some interesting places around you. 
+This app helps you find the interesting places, foods, and events from a given place. If you are stuck in a new place and have nothing to do, just find out some interesting places around you. This app works with the help of AI. So if you are not sure about the results, please cross check the data with local people before planning a trip.
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
