@@ -39,7 +39,7 @@ const onGetInfo = (place) => {
       const result = await res.json();
       setData(result);
     } catch (error) {
-      antdMessage.error("Failed to fetch place info");
+      antdMessage.error("We're currently experiencing high demand on AI usage. Please try again later. We appreciate your patience!");
       console.error(error);
     }
     setConfirmedPlace(place);
