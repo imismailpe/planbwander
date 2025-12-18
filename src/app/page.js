@@ -76,6 +76,9 @@ setLoading(false)
         <h4 style={{ color: "#525252", fontWeight: 400, margin: 0 }}>
           Find the best things to explore in a place with the help of AI
         </h4>
+        <h6 style={{ color: "#625252", fontWeight: 400, margin: 0 }}>
+            This hobby project uses Gemini account with limited quota. Thank you for understanding!
+        </h6>
         <Row justify={"center"} gutter={[32, 16]} align={"middle"}>
           <Col flex={1}>
           <Space.Compact style={{ width: "100%" }}>
