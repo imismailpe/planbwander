@@ -38,7 +38,7 @@ const placeInfoSchema = z.object({
 
 export const getPlaceInfo = async (userprompt) => {
   const { object } = await generateObject({
-    model: google("gemini-2.0-flash"),
+    model: google("gemini-2.5-flash"),
     prompt: userprompt,
     schema: placeInfoSchema,
     system:
